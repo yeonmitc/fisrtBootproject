@@ -1,0 +1,16 @@
+server:
+  port: 8081
+  servlet:
+    encoding:
+      force-response: true
+
+logging:
+  level:
+    com.boot.first: debug
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/testdb?serverTimezone=UTC&useSSL=false
+    username: root
+    password: root
