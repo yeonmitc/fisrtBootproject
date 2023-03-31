@@ -3,16 +3,21 @@ package com.boot.fisrt.service;
 import com.boot.fisrt.domain.Member;
 import com.boot.fisrt.repository.MemberListRepository;
 import com.boot.fisrt.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 public class MemberService {
 
-    private final MemberRepository dao = new MemberListRepository();
-
-    public MemberRepository getDao(){
-        return dao;
+    //private final MemberRepository dao = new MemberListRepository();
+    //@Autowired
+    private final MemberRepository dao;
+    @Autowired
+    public MemberService(MemberRepository dao){
+        this.dao = dao;
     }
+
     // controller에서 사용할꺼니깐 public
     // 회원가입
     public Long join(Member member){
@@ -33,8 +38,7 @@ public class MemberService {
         return list;
     }
     // 회원한명탈퇴
-    public void removeMember(Member member){
-        if(member==null) throw new IllegalStateException("존재하지않는 회원");
-        dao.delete(member);
+    public void removeMember(Long id){
+        dao.delete(id);
     }
 }

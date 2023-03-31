@@ -1,6 +1,7 @@
 package com.boot.fisrt.repository;
 
 import com.boot.fisrt.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 //DAO list
+//@Repository
 public class MemberListRepository  implements MemberRepository{
 // ctrl + shfit + t : 테스트 클래스를 만들어줌
     private static Map<Long,Member> store = new HashMap<>();
@@ -48,8 +50,8 @@ public class MemberListRepository  implements MemberRepository{
     }
 
     @Override
-    public void delete(Member member) {
-        store.remove(member.getId());
+    public void delete(Long id) {
+        store.remove(id);
     }
 
     public void clearStore(){

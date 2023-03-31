@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -15,10 +16,9 @@ class MemberListRepositoryTest {
 
     MemberListRepository dao = new MemberListRepository();
 
-
     @AfterEach
     void 리스트초기화(){
-        dao.clearStore();
+        //dao.clearStore();
     }
     @Test
     void 회원저장(){
