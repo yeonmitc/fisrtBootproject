@@ -12,10 +12,14 @@ public class Member {
     private String name;
     private Role role;
 
-    // 빌더에 필수 파라미터값 셋팅하기
-    public static MemberBuilder builder(Long id){
-        if(id == null) throw new IllegalArgumentException("필수 파라미터 누락");
-        return new MemberBuilder().id(id);
+    // 빌더에 필수 파라미터값 셋팅하기 -> memberlistRepository
+//    public static MemberBuilder builder(Long id){
+//        if(id == null) throw new IllegalArgumentException("필수 파라미터 누락");
+//        return new MemberBuilder().id(id);
+//    }
+
+    public void setKeyId(Long key){
+        this.id = key;
     }
 
 }

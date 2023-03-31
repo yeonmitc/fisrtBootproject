@@ -23,7 +23,7 @@ class MemberListRepositoryTest {
     @Test
     void 회원저장(){
         // 새로운 맴버를 추가 
-        Member member = Member.builder(dao.getSequence())
+        Member member = Member.builder()
                 .loginId("test").
                 password("1234").
                 name("테스트").
@@ -56,33 +56,33 @@ class MemberListRepositoryTest {
 
     @BeforeEach
     void setData(){
-        Member member = Member.builder(dao.getSequence())
-                .loginId("admin").
-                password("admin").
-                name("관리자").
-                role(Role.ADMIN)
-                .build();
-        Member member1 = Member.builder(dao.getSequence())
-                .loginId("test1").
-                password("1234").
-                name("테스트1").
-                role(Role.STUDENT)
-                .build();
-        Member member2 = Member.builder(dao.getSequence())
-                .loginId("test2").
-                password("1234").
-                name("테스트2").
-                role(Role.STUDENT)
-                .build();
-        Member member3 = Member.builder(dao.getSequence())
-                .loginId("test3").
-                password("1234").
-                name("테스트3").
-                role(Role.STUDENT)
-                .build();
-        dao.save(member);
-        dao.save(member1);
-        dao.save(member2);
-        dao.save(member3);
+//        Member member = Member.builder(dao.getSequence())
+//                .loginId("admin").
+//                password("admin").
+//                name("관리자").
+//                role(Role.ADMIN)
+//                .build();
+//        Member member1 = Member.builder(dao.getSequence())
+//                .loginId("test1").
+//                password("1234").
+//                name("테스트1").
+//                role(Role.STUDENT)
+//                .build();
+//        Member member2 = Member.builder(dao.getSequence())
+//                .loginId("test2").
+//                password("1234").
+//                name("테스트2").
+//                role(Role.STUDENT)
+//                .build();
+//        Member member3 = Member.builder(dao.getSequence())
+//                .loginId("test3").
+//                password("1234").
+//                name("테스트3").
+//                role(Role.STUDENT)
+//                .build();
+//        dao.save(member);
+//        dao.save(member1);
+//        dao.save(member2);
+//        dao.save(member3);
     }
 }

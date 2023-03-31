@@ -30,7 +30,7 @@ public class MemberController {
     }
     @PostMapping
     public String create(@ModelAttribute MemberForm form , Model model){
-        Member member = Member.builder(MemberListRepository.getSequence())
+        Member member = Member.builder()
                 .loginId(form.getId()).
                 password(form.getPw()).
                 name(form.getName()).
