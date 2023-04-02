@@ -5,9 +5,10 @@ import com.boot.fisrt.repository.MemberListRepository;
 import com.boot.fisrt.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Transactional(readOnly = true)
 public class MemberService {
 
     //private final MemberRepository dao = new MemberListRepository();
@@ -20,6 +21,7 @@ public class MemberService {
 
     // controller에서 사용할꺼니깐 public
     // 회원가입
+    @Transactional
     public Long join(Member member){
         validateMemberId(member);
         dao.save(member);
@@ -27,8 +29,9 @@ public class MemberService {
     }
     // 아이디중복체크
     private void validateMemberId(Member member){
-        if (dao.findByLoginId(member.getLoginId()) != null){
-            throw new IllegalStateException("이미 존재하는 회원아이디입니다");
+        Member fmember = dao.findByLoginId(member.getLoginId());
+        if (fmember!= null) {
+            throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
     // 전체회원조회
@@ -37,6 +40,7 @@ public class MemberService {
         if(list.isEmpty()) throw new IllegalStateException("데이터가 존재하지않습니다");
         return list;
     }
+    @Transactional
     // 회원한명탈퇴
     public void removeMember(Long id){
         dao.delete(id);
