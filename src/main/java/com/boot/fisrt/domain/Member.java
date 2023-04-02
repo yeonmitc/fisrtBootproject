@@ -11,8 +11,8 @@ import javax.persistence.*;
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
-    private Long id; // wrapper class long -> 디폴트 값이 0 이 아니라 null 을 주기 위해서 // int가 아니라 Integer
+    @Column(name="member_id")
+    private Long id;
     private String loginId;
     private String password;
     private String name;

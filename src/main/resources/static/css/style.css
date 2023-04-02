@@ -119,3 +119,11 @@ td{
 footer{
     background-color: lightgrey;
 }
+
+.fieldError{
+    border-color: red;
+    background: rgba(255,0,0,0.2);
+}
+.error{
+    color: red;
+}

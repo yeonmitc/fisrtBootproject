@@ -1,26 +1,30 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{/fragments/header :: header}">
+
 <body>
 
 <div class="row">
     <div th:replace="~{/fragments/bodyHeader :: bodyHeader}"></div>
 </div>
 <section>
-    <form action="/member" method="post">
+    <form action="/member" method="post" th:object="${form}">
 
         <div class="alert" th:if="${not #strings.isEmpty(msg)}">
-            <strong th:text="${msg}"> </strong>
+            <strong th:text="${msg}" class="error"> </strong>
         </div>
 
         <div class="form-outline mb-4">
-            <input type="text" id="id" name="id" class="form-control form-control-lg" placeholder="ID을 입력하세요"/>
+            <input type="text" th:field="*{id}"  th:class="${#fields.hasErrors('id')}? 'form-control fieldError' : 'form-control'" placeholder="ID을 입력하세요"/>
+            <p th:if ="${#fields.hasErrors('id')} "th:errors="*{id}" class="error"></p>
         </div>
         <div class="form-outline mb-4">
-            <input type="text" id="pw" name="pw" class="form-control form-control-lg" placeholder="PW을 입력하세요"/>
+            <input type="text" th:field="*{pw}"  th:class="${#fields.hasErrors('pw')}? 'form-control fieldError' : 'form-control'" placeholder="PW을 입력하세요"/>
+            <p th:if ="${#fields.hasErrors('pw')} "th:errors="*{pw}" class="error"></p>
         </div>
         <div class="form-outline mb-4">
-            <input type="text" id="name" name="name" class="form-control form-control-lg" placeholder="name을 입력하세요"/>
+            <input type="text" th:field="*{name}"  th:class="${#fields.hasErrors('name')}? 'form-control fieldError' : 'form-control'" placeholder="name을 입력하세요"/>
+            <p th:if ="${#fields.hasErrors('name')} "th:errors="*{name}" class="error"></p>
         </div>
 
         <div class="d-flex justify-content-center">

@@ -45,4 +45,8 @@ public class MemberService {
     public void removeMember(Long id){
         dao.delete(id);
     }
+
+    public Member findMember(Long memberId){
+        return dao.findOne(memberId);
+    }
 }

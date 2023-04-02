@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{/fragments/header :: header}">
+
 <body>
 
 <div class="row">
@@ -20,8 +21,8 @@
     <div class="col" th:text="${member.getName()}" >관리자</div>
     <div class="col" th:text="${member.getRole()}">ADMIN</div>
                                                     <!-- member/keyId=${member.getId()}-->
-    <div class="col"><a class ="mybtn" th:href="@{/member/{keyId}(keyId=${member.getId()})}">삭제1</a></div>
-    <div class="col"><button class="btn btn-dark" th:onclick="|deleteMember(${member.getId()})|">삭제2</button></div>
+    <div class="col"><a class ="btn btn-outline-secondary" th:href="@{/member/{keyId}(keyId=${member.getId()})}">삭제1</a></div>
+    <div class="col"><button class="btn btn-outline-danger" th:onclick="|deleteMember(${member.getId()})|">삭제2</button></div>
   </div>
 </th:block>
 <div th:replace="~{/fragments/footer :: footer}"> </div>

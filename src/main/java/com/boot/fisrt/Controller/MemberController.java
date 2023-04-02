@@ -9,8 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -25,24 +27,32 @@ public class MemberController {
         this.service = memberService;
     }
     @GetMapping
-    public String createForm(){
+    public String createForm(Model model){
+
+        model.addAttribute("form" , new MemberForm());
         return "members/joinForm";
     }
     @PostMapping
-    public String create(@ModelAttribute MemberForm form , Model model){
-        Member member = Member.builder()
-                .loginId(form.getId()).
-                password(form.getPw()).
-                name(form.getName()).
-                role(Role.STUDENT)
-                .build();
+    public String create(@Valid @ModelAttribute("form") MemberForm form , BindingResult rs ,Model model){
+
+        if(rs.hasErrors()){
+            return "members/joinForm";
+        }else {
+            Member member = Member.builder()
+                    .loginId(form.getId()).
+                    password(form.getPw()).
+                    name(form.getName()).
+                    role(Role.STUDENT)
+                    .build();
+
         try {
             service.join(member);
         }catch(IllegalStateException e){
             model.addAttribute("msg" , e.getMessage());
             return "members/joinForm";
         }
-        log.info(" join member={}" , member);
+            log.info(" join member={}", member);
+        }
         return "redirect:/member/members";
     }
 
